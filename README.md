@@ -1,16 +1,18 @@
-# GRIDENCE website
-Static HTML/CSS/JS site for GitHub Pages. Regenerate pages with `python3 build.py`.
+# Gridence
+
+A static, responsive business energy consulting website built for GitHub Pages.
 
 ## Deploy
-Repo Settings > Pages > Deploy from branch `main`, folder `/ (root)`. Live at https://ecomaura.github.io/gridence/
+1. Open repository **Settings → Pages**.
+2. Select **Deploy from a branch**.
+3. Choose **main** and **/(root)**, then save.
+4. The project site will be available at https://ecomaura.github.io/gridence/.
 
-## Form setup (Formspree)
-1. Create a form at formspree.io, copy its ID.
-2. Edit `assets/js/config.js`: set `formspree` to `https://formspree.io/f/<ID>`.
-3. Optional: set `whatsapp` to a verified number (digits with country code). Until then the form shows an email fallback.
+## Contact form
+The enquiry form opens the visitor's default email app and prepares a message to the current source contact address. Confirm the correct Gridence sales email before launch, or connect a form backend for direct submissions.
 
-## Content still to migrate (powerhelp.in blocked automated access)
-- Full original blog articles and their detail pages (blog/ currently shows an empty state)
-- Exact original FAQ answers (current FAQs are neutral drafts, verify)
-- Client logos, original photography, phone/address, legal text for Privacy and Terms
-- Enrovison LLP legal entity wording is subject to client confirmation
+## Files
+- index.html — page structure and content
+- styles.css — responsive visual system
+- script.js — mobile navigation and enquiry handling
+- favicon.svg — site icon
