@@ -10,3 +10,20 @@ const $=s=>document.querySelector(s),page=document.body.dataset.page;const photo
  nodes.forEach(el=>observer.observe(el));
  document.querySelectorAll('.home-hero h1,.home-hero .hero-copy>p,.home-hero .hero-actions').forEach((el,i)=>{el.classList.add('hero-enter');el.style.setProperty('--hero-delay',(i*140)+'ms')});
 })();
+
+/* Count-up ticker for prominent business metrics. */
+(()=>{
+ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ const counters=[...document.querySelectorAll('.metrics strong,.proof-stat strong')];
+ if(!counters.length||!('IntersectionObserver' in window))return;
+ const animate=el=>{
+  if(el.dataset.tickerDone)return;el.dataset.tickerDone='1';
+  const original=el.textContent.trim(),match=original.match(/^([\d,]+)(.*)$/);if(!match)return;
+  const target=Number(match[1].replace(/,/g,'')),suffix=match[2];if(!Number.isFinite(target))return;
+  const duration=1500,start=performance.now();el.setAttribute('aria-label',original);
+  const tick=now=>{const progress=Math.min((now-start)/duration,1),eased=1-Math.pow(1-progress,3);el.textContent=Math.round(target*eased).toLocaleString('en-IN')+suffix;if(progress<1)requestAnimationFrame(tick);else el.textContent=original};
+  el.textContent='0'+suffix;requestAnimationFrame(tick);
+ };
+ const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){animate(entry.target);observer.unobserve(entry.target)}}),{threshold:.6});
+ counters.forEach(el=>observer.observe(el));
+})();
