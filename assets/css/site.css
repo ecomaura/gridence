@@ -164,3 +164,10 @@ p{max-width:68ch}
 
 /* Mobile dropdown: ignore sticky touch hover; only the open class controls visibility. */
 @media(max-width:700px){.nav-drop:hover .drop-menu{display:none}.nav-drop.open .drop-menu{display:block}}
+
+/* Consistent Services chevron: use a CSS-drawn icon instead of a font glyph. */
+.nav-drop>a{display:inline-flex;align-items:center;gap:7px;line-height:1.2;white-space:nowrap}
+.nav-chevron{display:inline-flex;align-items:center;justify-content:center;position:relative;top:0;width:10px;height:10px;flex:0 0 10px;font-size:0;line-height:0;transition:none}
+.nav-chevron::before{content:"";display:block;width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+.nav-drop:hover .nav-chevron::before,.nav-drop.open .nav-chevron::before{transform:translateY(1px) rotate(225deg)}
+@media(max-width:700px){.nav-drop>a{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 0}.nav-chevron{top:0}}
