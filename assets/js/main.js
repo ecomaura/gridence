@@ -33,3 +33,11 @@ $$('form.lead').forEach(f=>{
   btn.disabled=false;btn.textContent=t});
 });
 })();
+(function(){
+const $=(s,c=document)=>c.querySelector(s),$$=(s,c=document)=>[...c.querySelectorAll(s)];
+$$('[data-tabs]').forEach(w=>{const b=$$('[role=tab]',w),p=$$('.npanel',w);
+ const set=i=>{b.forEach((x,j)=>x.setAttribute('aria-selected',i===j));p.forEach((x,j)=>x.classList.toggle('on',i===j))};
+ b.forEach((x,i)=>x.addEventListener('click',()=>set(i)));set(0)});
+const q=new URLSearchParams(location.search).get('service');
+if(q)$$('select[name=service]').forEach(s=>{const o=[...s.options].find(o=>o.value===q);if(o)s.value=q});
+})();
