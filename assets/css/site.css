@@ -141,3 +141,23 @@ p{max-width:68ch}
  .metrics small{font-size:9px}
  .steps{grid-template-columns:1fr}
 }
+
+/* Header dropdown alignment and interaction */
+.nav-drop>a{display:inline-flex;align-items:center;gap:7px;line-height:1.2;white-space:nowrap}
+.nav-chevron{display:inline-flex;align-items:center;justify-content:center;position:relative;top:-1px;font-size:15px;line-height:1;transition:transform .2s}
+.nav-drop:hover .nav-chevron,.nav-drop.open .nav-chevron{transform:rotate(180deg)}
+/* Higher-contrast step numbers in How we work */
+.steps article>span{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;background:var(--navy);color:var(--lime);font-size:15px;font-weight:800;letter-spacing:.02em}
+.steps article:before{display:none}
+/* WhatsApp action sizing and icon */
+.wa-float{display:inline-flex;align-items:center;justify-content:center;gap:11px;font-size:15px;padding:16px 23px;min-height:56px}
+.wa-icon{width:23px;height:23px;flex:0 0 23px;display:block}
+@media(max-width:700px){
+ .header>.wa-link{min-height:32px;padding:0 8px;font-size:9px;gap:5px;white-space:nowrap}
+ .nav-drop>a{display:flex;align-items:center;justify-content:space-between;width:100%;padding:14px 0}
+ .nav-drop.open .drop-menu{display:block}
+ .nav-drop .drop-menu{display:none}
+ .nav-drop .drop-menu a{padding:11px 8px;font-size:13px}
+ .wa-float{font-size:12px;min-height:46px;padding:11px 16px;gap:8px}
+ .wa-icon{width:20px;height:20px;flex-basis:20px}
+}
