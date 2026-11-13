@@ -118,3 +118,56 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,s
  .nx-panel{padding:30px 22px}
 }
 @media(prefers-reduced-motion:reduce){.nx-panel.nx-swap .nx-body{animation:none}}
+
+/* ===== Readability pass: one consistent type scale, accessible contrast ===== */
+body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.topline{font-size:12px;letter-spacing:.03em}
+.kicker,.section-label,.need-detail-kicker{font-size:12px;letter-spacing:.1em;line-height:1.5}
+.nav>a,.nav-drop>a,.nav-drop .drop-menu a,.drop-menu a{font-size:14px}
+.nav-cta,.header>.wa-link{font-size:13px}
+.btn,.line-link,.under-link{font-size:14px}
+.wa-float{font-size:14px}
+.hero-dot,.photo b{font-size:12px}
+.metrics small,.hero-bottom .metrics small{font-size:13px;line-height:1.5}
+.trust span,.trust b{font-size:12px}
+.card-body small{font-size:12px;letter-spacing:.08em}
+.card-body p{font-size:15px;line-height:1.7}
+.card-body>b{font-size:14px}
+.card-body>b span{font-size:18px}
+.intro-grid p,.section-head>p,.feature-copy>p,.contact-copy p{font-size:16px;line-height:1.75}
+.intro-grid p,.feature-copy>p,.contact-copy p{max-width:62ch}
+.checks li{font-size:15px}
+.contact-method p,.proof-stat p,.proof-points p,.steps p{font-size:15px;line-height:1.7}
+.contact-method>b,.proof-points b,.steps span{font-size:13px}
+.hero-copy>p,.home-hero .hero-copy>p,.page-hero p,.article-hero p{font-size:17px;line-height:1.7}
+.article-content p{font-size:18px;line-height:1.85}
+.article-content>div{max-width:70ch}
+.article-cta{font-size:15px}
+.footer p,.footer a:not(.logo),.footer strong{font-size:14px}
+.legal{font-size:12px}
+.form label{font-size:14px}
+.form input,.form select,.form textarea{font-size:16px}
+.form small,.bill-result small,.assessment-disclaimer,.assessment-note span{font-size:12px}
+.assessment-note,.assessment-tool label{font-size:14px}
+.bill-result span{font-size:13px}
+.toast{font-size:14px}
+.hc-fine{font-size:12px}
+
+/* Closing call to action: was lime text on pale green (about 1:1). Now a lime band with navy text. */
+.bottom-cta{background:var(--lime);color:var(--navy)}
+.bottom-cta small{font-size:12px;letter-spacing:.1em;color:#2b3b2a;font-weight:700}
+.bottom-cta h2{color:var(--navy)}
+.bottom-cta .highlight{color:var(--navy);background:linear-gradient(transparent 68%,rgba(11,20,36,.22) 68%);padding:0 4px;margin-left:-4px}
+.bottom-cta .btn-lime{background:var(--navy);color:#fff;min-height:56px;padding:0 28px}
+.bottom-cta .btn-lime:focus-visible{outline-color:var(--navy)}
+
+/* Roomier header at mid widths so the larger nav text does not crowd */
+@media(max-width:1180px) and (min-width:901px){.nav{gap:18px}.header{padding:0 4%}}
+
+/* Dark "experience" section heading: now matches the other section headings (the old rule targeted a class the markup does not use) */
+.proof-row h2{font:700 clamp(32px,4vw,52px)/1.12 var(--display);letter-spacing:-.04em;color:#fff;margin:18px 0 0;text-wrap:balance}
+.proof-row h2 em{font-style:normal;color:var(--lime)}
+
+/* Hero slides are absolutely positioned, so the hero needs enough height for the larger text */
+@media(max-width:700px){.home-hero{min-height:850px}.home-hero .hero-copy>p{font-size:16px;line-height:1.7}.hero-copy{padding-bottom:230px}}
+@media(min-width:701px) and (max-width:900px){.home-hero{min-height:820px}}
