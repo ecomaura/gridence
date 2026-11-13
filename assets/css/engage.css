@@ -171,3 +171,7 @@ body{-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
 /* Hero slides are absolutely positioned, so the hero needs enough height for the larger text */
 @media(max-width:700px){.home-hero{min-height:850px}.home-hero .hero-copy>p{font-size:16px;line-height:1.7}.hero-copy{padding-bottom:230px}}
 @media(min-width:701px) and (max-width:900px){.home-hero{min-height:820px}}
+
+/* Snappier slide change; timing is now driven by one clock in site.js so the bar and the slide stay in sync */
+.hero-slide{transition:opacity .45s ease,visibility .45s ease}
+.hero-progress span{transition:none}
