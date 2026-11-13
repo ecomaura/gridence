@@ -100,6 +100,39 @@ if(art){
  }
 }
 
+/* ---------- Home: "Start with your challenge" ---------- */
+const ns=$('.needs-section');
+if(ns){
+ const IC={
+  cost:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>',
+  safety:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.2 7.8-8 9-4.8-1.2-8-4.5-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg>',
+  infrastructure:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2L5 13h6l-1 9 8-11h-6z"/></svg>',
+  renewable:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></svg>'
+ };
+ const N=[
+  {id:'cost',t:'High electricity costs',s:'Bills feel high or hard to read',h:'Make sense of your electricity bill.',c:'Review tariff components, demand patterns and billing parameters to understand where a closer look may be worthwhile.',l:['Billing components and tariff applicability','Sanctioned load, contract demand and demand patterns','Mismatches worth raising with the utility'],svc:'electricity-bill-optimisation',b:'Explore bill optimisation'},
+  {id:'safety',t:'Electrical safety & audits',s:'Check risks in a running facility',h:'Put electrical safety in focus.',c:'Understand the condition of your electrical systems, identify observations and prioritise practical corrective actions.',l:['Energy consumption and operating patterns','Electrical systems and safety practices','Prioritised corrective actions'],svc:'energy-safety-audits',b:'Explore safety audits'},
+  {id:'infrastructure',t:'New facility or power setup',s:'Plan load, supply and installation',h:'Plan power around your project.',c:'Bring load requirements, infrastructure planning, utility coordination and execution into one clear scope.',l:['Load requirements and project constraints','Distribution design and supply sourcing','Installation and execution planning'],svc:'power-infrastructure',b:'Explore power infrastructure'},
+  {id:'renewable',t:'Renewable energy options',s:'Solar, open access and EV charging',h:'Evaluate cleaner energy pathways.',c:'Explore rooftop solar, open access and EV charging options against your facility profile and business priorities.',l:['Energy profile and project feasibility','Rooftop solar and open access models','EV charging requirements'],svc:'renewable-energy',b:'Explore renewable energy'}
+ ];
+ ns.innerHTML='<div class="nx-head"><div class="section-label">02 / START WITH YOUR CHALLENGE</div><h2>What does your business need help with?</h2><p>Pick the one closest to yours and we will show you where we would start.</p></div><div class="nx"><div class="nx-tabs" role="tablist" aria-label="Business challenge">'+N.map(n=>'<button class="nx-tab" type="button" role="tab" id="nxt-'+n.id+'" aria-controls="nxPanel" aria-selected="false" tabindex="-1" data-id="'+n.id+'"><span class="nx-ic">'+IC[n.id]+'</span><span class="nx-tx"><b>'+n.t+'</b><small>'+n.s+'</small></span></button>').join('')+'</div><div class="nx-panel" id="nxPanel" role="tabpanel" aria-live="polite"></div></div>';
+ const tabs=[...ns.querySelectorAll('.nx-tab')],panel=$('#nxPanel');
+ const pick=(id,focus)=>{
+  const n=N.find(x=>x.id===id);if(!n)return;
+  tabs.forEach(t=>{const on=t.dataset.id===id;t.setAttribute('aria-selected',on);t.tabIndex=on?0:-1;if(on&&focus)t.focus()});
+  panel.setAttribute('aria-labelledby','nxt-'+id);
+  panel.innerHTML='<div class="nx-body"><h3>'+n.h+'</h3><p>'+n.c+'</p><ul>'+n.l.map(x=>'<li>'+x+'</li>').join('')+'</ul></div><div class="nx-actions"><a class="btn btn-lime" href="'+P+'services/'+n.svc+'.html">'+n.b+' ↗</a><button class="nx-ask" type="button">Ask us about this</button></div>';
+  $('.nx-ask',panel).addEventListener('click',()=>openWA('Hello Gridence, I would like to discuss: '+n.t.toLowerCase()+'.'));
+  panel.classList.remove('nx-swap');void panel.offsetWidth;panel.classList.add('nx-swap');
+ };
+ tabs.forEach((t,i)=>{
+  t.addEventListener('click',()=>pick(t.dataset.id));
+  t.addEventListener('keydown',e=>{const k=e.key;if(!/^Arrow(Up|Down|Left|Right)$/.test(k))return;e.preventDefault();const d=/Down|Right/.test(k)?1:-1;pick(tabs[(i+d+tabs.length)%tabs.length].dataset.id,true)});
+ });
+ const sv=ls.get(),pre={cost:'cost',safety:'safety',infra:'infrastructure',green:'renewable'}[sv&&sv.need];
+ pick(pre||'cost');
+}
+
 /* ---------- Mobile sticky bar ---------- */
 document.body.insertAdjacentHTML('beforeend','<div class="sticky-bar"><button type="button" data-hc>Energy check</button><button type="button" class="sb-wa">WhatsApp us</button></div>');
 $('.sb-wa').addEventListener('click',()=>openWA('Hello Gridence, I have an enquiry about your energy services.'));
